@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { search } from './BooksAPI';
+import { search, update } from './BooksAPI';
 
 class SearchPage extends Component {
   state = {
@@ -28,6 +28,8 @@ class SearchPage extends Component {
           });
         }
       });
+
+    //update({ id: "nggnmAEACAAJ" }, 'wantToRead').then(console.log);
   }
 
   render() {

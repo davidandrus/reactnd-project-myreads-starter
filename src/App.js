@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import SearchPage from './SearchPage';
-import BooksList from './BooksList';
+import MainPage from './MainPage';
 
 import {
   BrowserRouter as Router,
@@ -17,7 +17,7 @@ class BooksApp extends React.Component {
           <Route
             exact
             path="/"
-            component={BooksList}
+            component={MainPage}
           />
           <Route
             exact
