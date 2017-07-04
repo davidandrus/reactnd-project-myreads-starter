@@ -35,9 +35,11 @@ class SearchPage extends Component {
       searchTerm,
     } = this.state;
 
-    const resultsMessage = searchTerm.trim() && !searchResults.length
+    const resultsMessage = searchTerm.trim()
       ? 'No Results Found for Query'
       : 'Enter a Search Query';
+
+    const showResultsMessage = !searchResults.length
 
     return (
       <div className="search-books">
@@ -57,7 +59,7 @@ class SearchPage extends Component {
         </div>
         <div className="search-books-results">
           {/*{JSON.stringify({searchResults})}*/}
-          {resultsMessage &&
+          {showResultsMessage &&
             <p>{resultsMessage}</p>
           }
           <BooksGrid books={searchResults} />

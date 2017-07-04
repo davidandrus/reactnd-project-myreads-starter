@@ -10,6 +10,7 @@ const getStyles = book => ({
 
 const getAuthors = authors => authors.join(', ');
 
+// @TODO - handle the different size image thumbnails
 export default function BooksGrid({ books }) {
   return (
     <ol className="books-grid">
@@ -42,4 +43,8 @@ export default function BooksGrid({ books }) {
 
 BooksGrid.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object),
+};
+
+BooksGrid.defaultProps = {
+  books: [],
 };
