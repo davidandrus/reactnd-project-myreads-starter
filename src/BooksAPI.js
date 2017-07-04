@@ -16,39 +16,39 @@ const headers = {
 }
 
 export const get = (bookId) =>
-  // fetch(`${api}/books/${bookId}`, { headers })
-  //   .then(res => res.json())
-  Promise.resolve(testResults.get)
-    .then(data => data.book)
+  fetch(`${api}/books/${bookId}`, { headers })
+    .then(res => res.json())
+  // Promise.resolve(testResults.get)
+  //   .then(data => data.book)
 
 export const getAll = () =>
-  // fetch(`${api}/books`, { headers })
-  //   .then(res => res.json())
-  Promise.resolve(testResults.all)
-    .then(data => data.books)
+  fetch(`${api}/books`, { headers })
+    .then(res => res.json())
+  // Promise.resolve(testResults.all)
+  //   .then(data => data.books)
 
 export const update = (book, shelf) =>
-  // fetch(`${api}/books/${book.id}`, {
-  //   method: 'PUT',
-  //   headers: {
-  //     ...headers,
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ shelf })
-  // }).then(res => res.json())
-  Promise.resolve(testResults.update)
+  fetch(`${api}/books/${book.id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ shelf })
+  }).then(res => res.json())
+  // Promise.resolve(testResults.update)
 
 export const search = (query, maxResults) => {
-  // return fetch(`${api}/search`, {
-  //   method: 'POST',
-  //   headers: {
-  //     ...headers,
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ query, maxResults })
-  // })
-  // .then(res => res.json())
+  return fetch(`${api}/search`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ query, maxResults })
+  })
+  .then(res => res.json())
 
-  return Promise.resolve(testResults.search)
-    .then(data => data.books);
+  // return Promise.resolve(testResults.search)
+  //   .then(data => data.books);
 }
