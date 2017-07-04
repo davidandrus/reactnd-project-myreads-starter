@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import BooksGrid from './BooksGrid';
 import { search, update } from './BooksAPI';
 
 class SearchPage extends Component {
@@ -18,15 +19,11 @@ class SearchPage extends Component {
     // @TODO - add loading indicator
     search(searchTermTrimmed, 20)
       .then(searchResults => {
-        if (Array.isArray(searchResults)) {
-          this.setState({
-            searchResults,
-          });
-        } else {
-          this.setState({
-            searchResults: [],
-          });
-        }
+        this.setState({
+          searchResults: Array.isArray(searchResults)
+            ? searchResults
+            : [],
+        });
       });
 
     //update({ id: "nggnmAEACAAJ" }, 'wantToRead').then(console.log);
@@ -59,11 +56,11 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {JSON.stringify({searchResults})}
+          {/*{JSON.stringify({searchResults})}*/}
           {resultsMessage &&
             <p>{resultsMessage}</p>
           }
-          <ol className="books-grid"></ol>
+          <BooksGrid books={searchResults} />
         </div>
       </div>
     );

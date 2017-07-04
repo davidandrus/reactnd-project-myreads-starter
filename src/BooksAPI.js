@@ -18,12 +18,14 @@ const headers = {
 export const get = (bookId) =>
   fetch(`${api}/books/${bookId}`, { headers })
     .then(res => res.json())
+    .then(data => data.book);
   // Promise.resolve(testResults.get)
   //   .then(data => data.book)
 
 export const getAll = () =>
   fetch(`${api}/books`, { headers })
     .then(res => res.json())
+    .then(data => data.books)
   // Promise.resolve(testResults.all)
   //   .then(data => data.books)
 
@@ -48,6 +50,7 @@ export const search = (query, maxResults) => {
     body: JSON.stringify({ query, maxResults })
   })
   .then(res => res.json())
+  .then(data => data.books);
 
   // return Promise.resolve(testResults.search)
   //   .then(data => data.books);
