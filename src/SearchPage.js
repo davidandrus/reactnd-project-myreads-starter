@@ -27,8 +27,6 @@ class SearchPage extends Component {
             : [],
         });
       });
-
-    //update({ id: "nggnmAEACAAJ" }, 'wantToRead').then(console.log);
   }
 
   _handleBookMove = ({ book, shelf }) => {
@@ -54,7 +52,9 @@ class SearchPage extends Component {
           <Link
             className="close-search" 
             to="/"
-          >Close</Link>
+          >
+            Close
+          </Link>
           <div className="search-books-input-wrapper">
             <input
               onChange={this._handleSearchChange}
@@ -65,7 +65,6 @@ class SearchPage extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          {/*{JSON.stringify({searchResults})}*/}
           {showResultsMessage &&
             <p>{resultsMessage}</p>
           }
