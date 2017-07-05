@@ -20,7 +20,7 @@ export default class Book extends Component {
 
   _handleBookMove = (e) => {
     const { book, onBookMove } = this.props;
-    console.log('calling move with', e.target.value, book);
+
     onBookMove({
       shelf: e.target.value,
       book,
@@ -29,6 +29,7 @@ export default class Book extends Component {
 
   render() {
     const { book } = this.props;
+
     return (
       <div className="book">
         <div className="book-top">
@@ -37,12 +38,15 @@ export default class Book extends Component {
           style={getStyles(book)}
         />
           <div className="book-shelf-changer">
-          <select onChange={this._handleBookMove}>
-              <option value="none" disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
-              <option value="none">None</option>
+          <select
+            onChange={this._handleBookMove}
+            value={book.shelf}
+          >
+            <option value="none" disabled>Move to...</option>
+            <option value="currentlyReading">Currently Reading</option>
+            <option value="wantToRead">Want to Read</option>
+            <option value="read">Read</option>
+            <option value="none">None</option>
           </select>
           </div>
         </div>
