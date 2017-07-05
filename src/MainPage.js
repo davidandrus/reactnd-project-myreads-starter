@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import fpGroupBy from 'lodash/fp/groupBy';
 
 import BookShelf from './BookShelf';
-import { getAll, update } from './BooksAPI';
-import fpGroupBy from 'lodash/fp/groupBy';
+import {
+  getAll,
+  update,
+} from './BooksAPI';
+
 
 export default class MainPage extends Component {
 

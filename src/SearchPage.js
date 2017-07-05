@@ -18,6 +18,7 @@ class SearchPage extends Component {
 
     // @TODO - only make sure most recent promise resolves
     // @TODO - add loading indicator
+    // @TOOD - make sure books have correct shelf state
     search(searchTermTrimmed, 20)
       .then(searchResults => {
         this.setState({
@@ -28,6 +29,11 @@ class SearchPage extends Component {
       });
 
     //update({ id: "nggnmAEACAAJ" }, 'wantToRead').then(console.log);
+  }
+
+  _handleBookMove = ({ book, shelf }) => {
+    // show error when failed;
+    update(book, shelf)
   }
 
   render() {
@@ -63,7 +69,10 @@ class SearchPage extends Component {
           {showResultsMessage &&
             <p>{resultsMessage}</p>
           }
-          <BooksGrid books={searchResults} />
+          <BooksGrid
+            books={searchResults}
+            onBookMove={this._handleBookMove}
+          />
         </div>
       </div>
     );

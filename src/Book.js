@@ -19,7 +19,10 @@ export default class Book extends Component {
   }
 
   _handleBookMove = (e) => {
-    const { book, onBookMove } = this.props;
+    const {
+      book,
+      onBookMove,
+    } = this.props;
 
     onBookMove({
       shelf: e.target.value,

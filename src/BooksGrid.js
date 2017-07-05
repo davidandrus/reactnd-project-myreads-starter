@@ -10,7 +10,7 @@ export default function BooksGrid({ books, onBookMove }) {
           <Book 
             book={book}
             onBookMove={onBookMove}
-            />
+          />
         </li>
       ))}
     </ol>
@@ -19,6 +19,7 @@ export default function BooksGrid({ books, onBookMove }) {
 
 BooksGrid.propTypes = {
   books: PropTypes.arrayOf(PropTypes.object),
+  onBookMove: PropTypes.func.isRequired,
 };
 
 BooksGrid.defaultProps = {
