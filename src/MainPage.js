@@ -13,14 +13,19 @@ export default class MainPage extends Component {
   
   componentDidMount() {
     // @TODO - handle error somehow
-    getAll()
-      .then(fpGroupBy('shelf'))
-      .then(shelves => this.setState({ shelves }))
+    this._updateData();
   }
 
   _handleBookMove = ({ book, shelf }) => {
-    // @TODO - make sure page is refreshed when book is added
+    // show error when failed;
     update(book, shelf)
+      .then(this._updateData);
+  }
+
+  _updateData = () => {
+    getAll()
+      .then(fpGroupBy('shelf'))
+      .then(shelves => this.setState({ shelves }))
   }
 
   render() {
