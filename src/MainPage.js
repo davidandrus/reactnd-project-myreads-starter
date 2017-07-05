@@ -16,6 +16,10 @@ export default class MainPage extends Component {
       .then(shelves => this.setState({ shelves }))
   }
 
+  _handleBookMove = () => {
+    alert('should move yo');
+  }
+
   render() {
     const {
       shelves: {
@@ -34,6 +38,7 @@ export default class MainPage extends Component {
           <div>
             <BookShelf 
               books={currentlyReading}
+              onBookMove={this._handleBookMove}
               title="Currently Reading"
             />
             <BookShelf
