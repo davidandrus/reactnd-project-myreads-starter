@@ -39,10 +39,12 @@ class BooksApp extends Component {
 
   render() {
     const { shelves } = this.state;
+    
     const commonProps = {
       onBookMove: this._handleBookMove,
       shelves,
     };
+
     return (
       <Router>
         <div className="app">

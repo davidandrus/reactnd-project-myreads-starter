@@ -5,16 +5,17 @@ import BooksGrid from './BooksGrid';
 
 
 function BookShelf({ title, books, onBookMove }) {
-  if (!books.length) { return null; }
-
   return (
      <div className="bookshelf">
       <h2 className="bookshelf-title">{title}</h2>
       <div className="bookshelf-books">
-        <BooksGrid
-          books={books}
-          onBookMove={onBookMove}
-        />
+        {books.length 
+          ? <BooksGrid
+              books={books}
+              onBookMove={onBookMove}
+            />
+          : <p>No Books Found</p>
+        }
       </div>
     </div>
   )
