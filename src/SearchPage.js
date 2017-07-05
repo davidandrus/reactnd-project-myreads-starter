@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import BooksGrid from './BooksGrid';
 import { search, update } from './BooksAPI';
 
@@ -44,10 +45,10 @@ class SearchPage extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <a
+          <Link
             className="close-search" 
-            onClick={() => this.setState({ showSearchPage: false })}
-          >Close</a>
+            to="/"
+          >Close</Link>
           <div className="search-books-input-wrapper">
             <input
               onChange={this._handleSearchChange}
