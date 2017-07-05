@@ -11,7 +11,6 @@ const getStyles = book => ({
 
 const getAuthors = authors => authors.join(', ');
 
-// @TODO - handle the different size image thumbnails
 export default class Book extends Component {
   
   static propTypes = {

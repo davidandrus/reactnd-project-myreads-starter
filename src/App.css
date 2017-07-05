@@ -169,9 +169,35 @@ body, .app {
   background: #eee;
 }
  */
- 
+
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+.loading {
+  animation: spin 750ms ease-in-out infinite;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  top: calc(50vh - 25px);
+  left: calc(50vw - 25px);
+  border-radius: 100%;
+  border: 10px solid rgb(46, 124, 49);
+  border-bottom-color:rgba(46, 124, 49, .7);
+  border-top-color: rgba(46, 124, 49, .7);
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
 }

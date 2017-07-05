@@ -11,31 +11,35 @@ export default function MainPage({
     wantToRead,
   },
   onBookMove,
+  loading,
 }) {
   return (
     <div className="list-books">
       <div className="list-books-title">
         <h1>MyReads</h1>
       </div>
-      <div className="list-books-content">
-        <div>
-          <BookShelf 
-            books={currentlyReading}
-            onBookMove={onBookMove}
-            title="Currently Reading"
-          />
-          <BookShelf
-            books={wantToRead}
-            onBookMove={onBookMove}
-            title="Want to Read"
-          />
-          <BookShelf
-            books={read}
-            onBookMove={onBookMove}
-            title="Read"
-          />
-        </div>
-      </div>
+      {loading 
+        ? <div className="loading" />
+        : <div className="list-books-content">
+            <div>
+              <BookShelf 
+                books={currentlyReading}
+                onBookMove={onBookMove}
+                title="Currently Reading"
+              />
+              <BookShelf
+                books={wantToRead}
+                onBookMove={onBookMove}
+                title="Want to Read"
+              />
+              <BookShelf
+                books={read}
+                onBookMove={onBookMove}
+                title="Read"
+              />
+            </div>
+          </div>
+      }
       <div className="open-search">
         <Link to="/search">Add a book</Link>
       </div>
@@ -46,4 +50,5 @@ export default function MainPage({
 MainPage.propTypes = {
   shelves: PropTypes.object,
   onBookMove: PropTypes.func,
-}
+  loading: PropTypes.bool,
+};

@@ -18,6 +18,7 @@ import {
 class BooksApp extends Component {
   state = {
     shelves: {},
+    loading: false,
   };
   
   componentDidMount() {
@@ -31,17 +32,27 @@ class BooksApp extends Component {
   }
 
   _updateData = () => {
+    this.setState({
+      loading: true,
+    });
     getAll()
       .then(fpGroupBy('shelf'))
-      .then(shelves => this.setState({ shelves }))
+      .then(shelves => this.setState({
+        shelves,
+        loading: false 
+      }))
       .catch(() => alert('unable to load bookshelves'))
   }
 
   render() {
-    const { shelves } = this.state;
+    const {
+      shelves,
+      loading,
+    } = this.state;
     
     const commonProps = {
       onBookMove: this._handleBookMove,
+      loading,
       shelves,
     };
 

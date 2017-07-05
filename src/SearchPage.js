@@ -18,9 +18,6 @@ const getShelfForBook = (result, shelfIds) =>
     shelfId => includes(shelfIds[shelfId], result.id)
   ) || 'none';
 
-// @TODO - only make sure most recent promise resolves
-// @TODO - add loading indicator
-// @TOOD - make sure books have correct shelf state
 // @TODO - persist search term to history - MAYBE?
 function getDoctoredResults(results, shelves) {
   const shelfIds = getObjectIds(shelves);
@@ -33,6 +30,8 @@ function getDoctoredResults(results, shelves) {
 
 class SearchPage extends Component {
   state = {
+    // for testing
+    loading: false,
     searchTerm: '',
     resultsMessage: '',
     searchResults: [],
@@ -42,12 +41,27 @@ class SearchPage extends Component {
     e.preventDefault();
     const searchTerm = e.target.value;
     const searchTermTrimmed = searchTerm.trim();
-    this.setState({ searchTerm });
+    this.setState({
+      searchTerm,
+      loading: true,
+      ...!searchTermTrimmed && {
+        loading: false,
+        searchResults: [],
+      },
+    });
 
+    // only fetch if there is a searchTerm
+    if (!searchTermTrimmed) { return; }
 
-    search(searchTermTrimmed, 20)
+    search(searchTermTrimmed, 100)
       .then(searchResults => {
+
+        // only resolve promise for the current searchTerm
+        if (this.state.searchTerm.trim() !== searchTermTrimmed) {
+          return;
+        }
         this.setState({
+          loading: false,
           searchResults: Array.isArray(searchResults)
             ? searchResults
             : [],
@@ -57,6 +71,7 @@ class SearchPage extends Component {
 
   render() {
     const {
+      loading,
       searchResults,
       searchTerm,
     } = this.state;
@@ -70,7 +85,7 @@ class SearchPage extends Component {
       ? 'No Results Found for Query'
       : 'Enter a Search Query';
 
-    const showResultsMessage = !searchResults.length
+    const showResultsMessage = !searchResults.length && !loading;
     const doctoredResults = getDoctoredResults(searchResults, shelves);
 
     return (
@@ -95,6 +110,7 @@ class SearchPage extends Component {
           {showResultsMessage &&
             <p>{resultsMessage}</p>
           }
+          {loading && <div className="loading" />}
           <BooksGrid
             books={doctoredResults}
             onBookMove={onBookMove}
