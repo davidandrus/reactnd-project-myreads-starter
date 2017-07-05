@@ -6,6 +6,7 @@ const getStyles = book => ({
   height: 193,
   backgroundImage: `url("${book.imageLinks.thumbnail}")`,
   backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'bottom center'
 });
 
 const getAuthors = authors => authors.join(', ');

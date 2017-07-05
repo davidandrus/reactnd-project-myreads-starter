@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import BooksGrid from './BooksGrid';
-
-
 
 function BookShelf({ title, books, onBookMove }) {
   return (

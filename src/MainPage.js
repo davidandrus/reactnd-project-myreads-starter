@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import BookShelf from './BookShelf';
 
@@ -40,4 +41,9 @@ export default function MainPage({
       </div>
     </div>
   );
+}
+
+MainPage.propTypes = {
+  shelves: PropTypes.object,
+  onBookMove: PropTypes.func,
 }

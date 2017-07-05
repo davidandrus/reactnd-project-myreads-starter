@@ -21,20 +21,20 @@ class BooksApp extends Component {
   };
   
   componentDidMount() {
-    // @TODO - handle error somehow
     this._updateData();
   }
 
   _handleBookMove = ({ book, shelf }) => {
-    // show error when failed;
     update(book, shelf)
-      .then(this._updateData);
+      .then(this._updateData)
+      .catch(() => alert(`unable to move ${book.title}`))
   }
 
   _updateData = () => {
     getAll()
       .then(fpGroupBy('shelf'))
       .then(shelves => this.setState({ shelves }))
+      .catch(() => alert('unable to load bookshelves'))
   }
 
   render() {
