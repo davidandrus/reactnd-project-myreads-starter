@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import BookShelf from './BookShelf';
-import { getAll } from './BooksAPI';
+import { getAll, update } from './BooksAPI';
 import fpGroupBy from 'lodash/fp/groupBy';
 
 export default class MainPage extends Component {
@@ -16,8 +16,9 @@ export default class MainPage extends Component {
       .then(shelves => this.setState({ shelves }))
   }
 
-  _handleBookMove = () => {
-    alert('should move yo');
+  _handleBookMove = ({ book, shelf }) => {
+    // @TODO - make sure page is refreshed when book is added
+    update(book, shelf)
   }
 
   render() {
@@ -43,10 +44,12 @@ export default class MainPage extends Component {
             />
             <BookShelf
               books={wantToRead}
+              onBookMove={this._handleBookMove}
               title="Want to Read"
             />
             <BookShelf
               books={read}
+              onBookMove={this._handleBookMove}
               title="Read"
             />
           </div>
