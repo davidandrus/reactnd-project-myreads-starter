@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { update } from './BooksAPI';
+import { SHELF_STRING_MAP } from './constants';
 
 const getStyles = book => ({
   backgroundImage: `url("${book.imageLinks.thumbnail}")`,
@@ -65,9 +67,9 @@ export default class Book extends Component {
               value={book.shelf}
             >
               <option disabled>Move to...</option>
-              <option value="currentlyReading">Currently Reading</option>
-              <option value="wantToRead">Want to Read</option>
-              <option value="read">Read</option>
+              <option value="currentlyReading">{SHELF_STRING_MAP.currentlyReading}</option>
+              <option value="wantToRead">{SHELF_STRING_MAP.wantToRead}</option>
+              <option value="read">{SHELF_STRING_MAP.read}</option>
               <option value="none">None</option>
             </select>
           </div>

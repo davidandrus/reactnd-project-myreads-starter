@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { SHELF_STRING_MAP } from './constants';
 
 import BookShelf from './BookShelf';
 
@@ -25,17 +26,17 @@ export default function MainPage({
               <BookShelf 
                 books={currentlyReading}
                 onBookMove={onBookMove}
-                title="Currently Reading"
+                title={SHELF_STRING_MAP.currentlyReading}
               />
               <BookShelf
                 books={wantToRead}
                 onBookMove={onBookMove}
-                title="Want to Read"
+                title={SHELF_STRING_MAP.wantToRead}
               />
               <BookShelf
                 books={read}
                 onBookMove={onBookMove}
-                title="Read"
+                title={SHELF_STRING_MAP.read}
               />
             </div>
           </div>

@@ -1,7 +1,14 @@
-import React, { Component } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import React, { Component } from 'react';
 import fpGroupBy from 'lodash/fp/groupBy';
+import cloneDeep from 'lodash/cloneDeep';
+import mapValues from 'lodash/mapValues';
+
+import {
+  ToastContainer,
+  toast,
+} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+
 
 import {
   BrowserRouter as Router,
@@ -13,9 +20,7 @@ import SearchPage from './SearchPage';
 import MainPage from './MainPage';
 import BookMessage from './BookMessage';
 
-import {
-  getAll,
-} from './BooksAPI';
+import { getAll } from './BooksAPI';
 
 class BooksApp extends Component {
   state = {
@@ -24,11 +29,14 @@ class BooksApp extends Component {
   };
   
   componentDidMount() {
-    this._updateData();
+    this._fetchData();
   }
 
   _handleBookMove = ({ book, shelf, error }) => {
-    this._updateData();
+    if (!error) {
+      this._updateData({ book, shelf });
+    }
+
     toast(
       <BookMessage 
         book={book}
@@ -39,7 +47,23 @@ class BooksApp extends Component {
       });
   }
 
-  _updateData = () => {
+
+  _updateData = ({ book, shelf }) => {
+    // clone shelves and remove the added book from existing shelves if found
+    const shelvesClone = mapValues(
+      cloneDeep(this.state.shelves),
+      books => books.filter(shelfBook => book.id !== shelfBook.id),
+    );
+    
+    this.setState({
+      shelves: {
+        ...shelvesClone,
+        [shelf]: [...shelvesClone[shelf], book],
+      },
+    });
+  }
+
+  _fetchData = () => {
     this.setState({
       loading: true,
     });

@@ -1,9 +1,4 @@
-// for testing
-import testResults from './testResponses';
-
-
 const api = "https://reactnd-books-api.udacity.com"
-
 
 // Generate a unique token for storing your bookshelf data on the backend server.
 let token = localStorage.token
@@ -19,15 +14,11 @@ export const get = (bookId) =>
   fetch(`${api}/books/${bookId}`, { headers })
     .then(res => res.json())
     .then(data => data.book);
-  // Promise.resolve(testResults.get)
-  //   .then(data => data.book)
 
 export const getAll = () =>
   fetch(`${api}/books`, { headers })
     .then(res => res.json())
     .then(data => data.books)
-  // Promise.resolve(testResults.all)
-  //   .then(data => data.books)
 
 export const update = (book, shelf) =>
   fetch(`${api}/books/${book.id}`, {
@@ -38,7 +29,6 @@ export const update = (book, shelf) =>
     },
     body: JSON.stringify({ shelf })
   }).then(res => res.json())
-  // Promise.resolve(testResults.update)
 
 export const search = (query, maxResults) => {
   return fetch(`${api}/search`, {
@@ -51,7 +41,4 @@ export const search = (query, maxResults) => {
   })
   .then(res => res.json())
   .then(data => data.books);
-
-  // return Promise.resolve(testResults.search)
-  //   .then(data => data.books);
 }

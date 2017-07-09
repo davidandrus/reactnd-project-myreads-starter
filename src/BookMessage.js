@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { SHELF_STRING_MAP } from './constants';
+
 export default function BookMessage({ book, shelf, type }) {
   return (
     <div className="book-toast">
@@ -17,7 +19,7 @@ export default function BookMessage({ book, shelf, type }) {
             ? 'Successfully moved to '
             : 'Could not be moved to '
           }
-          <strong>{shelf}</strong>
+          <strong>{SHELF_STRING_MAP[shelf]}</strong>
         </p>
       }
     </div>
