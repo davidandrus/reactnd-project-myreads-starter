@@ -35,7 +35,11 @@ export default class Book extends Component {
         this.setState({ moving: false }, () => {
           onBookMove({
             shelf,
-            book,
+            book: {
+              // make sure to pass book with the new shelf it has been moved to
+              ...book,
+              shelf,
+            }
           });
         })
       })
