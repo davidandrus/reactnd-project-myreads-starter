@@ -37,7 +37,13 @@ export default class Book extends Component {
           });
         })
       })
-      .catch(() => alert(`unable to move ${book.title}`))
+      .catch(() => {
+        onBookMove({
+          shelf,
+          book,
+          error: true,
+        });
+      })
   }
 
   render() {

@@ -28,14 +28,12 @@ class BooksApp extends Component {
   }
 
   _handleBookMove = ({ book, shelf, error }) => {
-    console.log('move happened', { book });
-    // update shelf state
     this._updateData();
     toast(
       <BookMessage 
         book={book}
         shelf={shelf}
-        type="success"
+        type={error ? 'error' : 'success'}
       />, {
          type: error ? toast.TYPE.ERROR: toast.TYPE.SUCCESS
       });

@@ -11,8 +11,14 @@ export default function BookMessage({ book, shelf, type }) {
           width={50}
         />
       </div>
-      {type === 'success' &&
-        <p><strong>{book.title}</strong> Successfully moved to <strong>{shelf}</strong></p>
+        <p>
+          <strong>{book.title}</strong> 
+          {type === 'success'
+            ? 'Successfully moved to '
+            : 'Could not be moved to '
+          }
+          <strong>{shelf}</strong>
+        </p>
       }
     </div>
   )
