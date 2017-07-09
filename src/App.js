@@ -49,7 +49,13 @@ class BooksApp extends Component {
         shelves,
         loading: false 
       }))
-      .catch(() => alert('unable to load bookshelves'))
+      .catch(() => {
+        toast(
+          <h2>There was an error loading your bookshelves, try again by hitting refresh in your browser.</h2>
+          ,{
+            autoClose: false,
+          })
+      })
   }
 
   render() {
