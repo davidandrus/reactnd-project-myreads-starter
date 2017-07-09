@@ -110,7 +110,7 @@ class SearchPage extends Component {
           {showResultsMessage &&
             <p>{resultsMessage}</p>
           }
-          {loading && <div className="loading" />}
+          {loading && <div className="loader" />}
           <BooksGrid
             books={doctoredResults}
             onBookMove={onBookMove}

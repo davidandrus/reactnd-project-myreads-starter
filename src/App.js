@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import fpGroupBy from 'lodash/fp/groupBy';
 
 import {
@@ -9,10 +11,10 @@ import {
 import './App.css'
 import SearchPage from './SearchPage';
 import MainPage from './MainPage';
+import BookMessage from './BookMessage';
 
 import {
   getAll,
-  update,
 } from './BooksAPI';
 
 class BooksApp extends Component {
@@ -25,10 +27,18 @@ class BooksApp extends Component {
     this._updateData();
   }
 
-  _handleBookMove = ({ book, shelf }) => {
-    update(book, shelf)
-      .then(this._updateData)
-      .catch(() => alert(`unable to move ${book.title}`))
+  _handleBookMove = ({ book, shelf, error }) => {
+    console.log('move happened', { book });
+    // update shelf state
+    this._updateData();
+    toast(
+      <BookMessage 
+        book={book}
+        shelf={shelf}
+        type="success"
+      />, {
+         type: error ? toast.TYPE.ERROR: toast.TYPE.SUCCESS
+      });
   }
 
   _updateData = () => {
@@ -69,6 +79,7 @@ class BooksApp extends Component {
             path="/search"
             render={() => <SearchPage {...commonProps} />}
           />
+          <ToastContainer className="toast-container" />
         </div>
       </Router>
     )

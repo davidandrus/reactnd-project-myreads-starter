@@ -19,7 +19,7 @@ export default function MainPage({
         <h1>MyReads</h1>
       </div>
       {loading 
-        ? <div className="loading" />
+        ? <div className="loader" />
         : <div className="list-books-content">
             <div>
               <BookShelf 
