@@ -33,6 +33,8 @@ class BooksApp extends Component {
   }
 
   _handleBookMove = ({ book, shelf, error }) => {
+
+    // only refresh data if the move call is successful, otherwise no update needed
     if (!error) {
       this._updateData({ book, shelf });
     }
@@ -43,10 +45,9 @@ class BooksApp extends Component {
         shelf={shelf}
         type={error ? 'error' : 'success'}
       />, {
-         type: error ? toast.TYPE.ERROR: toast.TYPE.SUCCESS
+         type: toast.TYPE[error ? 'ERROR' : 'SUCCESS'],
       });
   }
-
 
   _updateData = ({ book, shelf }) => {
     // clone shelves and remove the added book from existing shelves if found
@@ -64,21 +65,18 @@ class BooksApp extends Component {
   }
 
   _fetchData = () => {
-    this.setState({
-      loading: true,
-    });
+    this.setState({ loading: true });
     getAll()
       .then(fpGroupBy('shelf'))
       .then(shelves => this.setState({
         shelves,
-        loading: false 
+        loading: false,
       }))
       .catch(() => {
         toast(
           <h2>There was an error loading your bookshelves, try again by hitting refresh in your browser.</h2>
-          ,{
-            autoClose: false,
-          })
+          , { autoClose: false }
+        )
       })
   }
 

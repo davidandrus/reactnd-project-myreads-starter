@@ -10,6 +10,7 @@ export default function BookMessage({ book, shelf, type }) {
         <img
           className="book-toast-image"
           src={book.imageLinks.thumbnail}
+          alt={book.title}
           width={50}
         />
       </div>
@@ -30,7 +31,7 @@ export default function BookMessage({ book, shelf, type }) {
 BookMessage.propTypes = {
   book: PropTypes.object.isRequired,
   type: PropTypes.oneOf(['success', 'error']),
-  shelf: PropTypes.node,
+  shelf: PropTypes.oneOf(Object.keys(SHELF_STRING_MAP)),
 }
 
 BookMessage.defaultProps = {

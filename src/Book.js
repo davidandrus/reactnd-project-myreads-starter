@@ -36,7 +36,7 @@ export default class Book extends Component {
           onBookMove({
             shelf,
             book: {
-              // make sure to pass book with the new shelf it has been moved to
+              // make sure to pass book updated with the new shelf it has been moved to
               ...book,
               shelf,
             }
@@ -44,10 +44,12 @@ export default class Book extends Component {
         })
       })
       .catch(() => {
-        onBookMove({
-          shelf,
-          book,
-          error: true,
+        this.setState({ moving: false }, () => {
+          onBookMove({
+            shelf,
+            book,
+            error: true,
+          });
         });
       })
   }
@@ -60,10 +62,10 @@ export default class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-        <div
-          className="book-cover"
-          style={getStyles(book)}
-        />
+          <div
+            className="book-cover"
+            style={getStyles(book)}
+          />
           <div className={changerClassName}>
             <select
               disabled={moving}

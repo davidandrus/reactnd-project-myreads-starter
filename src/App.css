@@ -155,6 +155,15 @@ body, .app {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
+.book-shelf-changer select {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* loading styles for shelf-changer*/
+
 .book-shelf-changer.loading {
   background-image: none;
 }
@@ -174,14 +183,6 @@ body, .app {
   border-top-color: rgba(46, 124, 49, .7);
 }
 
-
-.book-shelf-changer select {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  cursor: pointer;
-}
-
 /* book cover */
 
 .book-cover {
@@ -199,6 +200,8 @@ body, .app {
   font-size: 0.8em;
 }
 
+/* loader */
+
 .loader {
   animation: spin 750ms ease-in-out infinite;
   height: 50px;
@@ -212,18 +215,7 @@ body, .app {
   border-top-color: rgba(46, 124, 49, .7);
 }
 
-@-moz-keyframes spin {
-    from { -moz-transform: rotate(0deg); }
-    to { -moz-transform: rotate(360deg); }
-}
-@-webkit-keyframes spin {
-    from { -webkit-transform: rotate(0deg); }
-    to { -webkit-transform: rotate(360deg); }
-}
-@keyframes spin {
-    from {transform:rotate(0deg);}
-    to {transform:rotate(360deg);}
-}
+/* toasts */
 
 .toast-container {
   z-index: 5000;
@@ -236,4 +228,19 @@ body, .app {
 .book-toast-image {
   margin-right: 10px;
   width: 50px;
+}
+
+/* animations */
+
+@-moz-keyframes spin {
+  from { -moz-transform: rotate(0deg); }
+  to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
