@@ -9,9 +9,12 @@ import {
 } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
-
 import {
-  BrowserRouter as Router,
+  /**
+   * would normally user BrowserRouter, 
+   * but to get to work on gh-pages will use has router
+   */ 
+  HashRouter as Router,
   Route,
 } from 'react-router-dom';
 
